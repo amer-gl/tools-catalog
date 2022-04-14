@@ -7,9 +7,10 @@ import "./App.css";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-const CatalogItemLayout = (initWidgets, idx, handleUpdate) => {
-  const [layouts, setLayouts] = useState(null);
-  const [widgetArray, setWidgetArray] = useState([...initWidgets]);
+const CatalogItemLayout = ({toolsList, idx, setToolsList}) => {
+  const [layouts, setLayouts] = useState(toolsList[idx].layout);
+  const [widgetArray, setWidgetArray] = useState([...toolsList[idx].widgets]);
+
 
   const handleModify = (layouts, layout) => {
     const tempArray = widgetArray;
@@ -20,21 +21,32 @@ const CatalogItemLayout = (initWidgets, idx, handleUpdate) => {
       tempArray[Number(position.i)].width =  position.w;
       tempArray[Number(position.i)].height = position.h;
     });
+    let newToolsList = toolsList;
+    newToolsList[idx].widgets = tempArray;
+    newToolsList[idx].layout = layout;
+    setToolsList(newToolsList);
     setWidgetArray(tempArray);
-    handleUpdate(idx, tempArray);
   };
 
   const handleAdd = () => {
-    setWidgetArray([
+    const tempArray = [
       ...widgetArray,
       { i: "widget" + (widgetArray.length + 1), x: 0, y: 0, w: 2, h: 2 },
-    ]);
+    ];
+    let newToolsList = toolsList;
+    newToolsList[idx].widgets = tempArray;
+    console.log(newToolsList[idx]);
+    setToolsList(newToolsList);
+    setWidgetArray(tempArray);
   };
 
   const handleDelete = (key) => {
     const tempArray = widgetArray.slice();
     const index = tempArray.indexOf(tempArray.find((data) => data.i === key));
     tempArray.splice(index, 1);
+    let newToolsList = toolsList;
+    newToolsList[idx].widgets = tempArray;
+    setToolsList(newToolsList);
     setWidgetArray(tempArray);
   };
 

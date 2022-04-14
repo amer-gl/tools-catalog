@@ -30,3 +30,18 @@
 .side-bar ul li {
   cursor: pointer;
 }
+
+.panel-box {
+  width: 100vw;
+  min-height: 40vh;
+  height: auto;
+}
+
+.tab-panel {
+  flex-grow: 1;
+}
+
+.add-item {
+  float: left;
+  margin: 20px;
+}

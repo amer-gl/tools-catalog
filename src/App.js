@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { nativeSelectClasses } from "@mui/material";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -39,18 +40,27 @@ function a11yProps(index) {
 	};
 }
 
+const initialItems = [{
+  id: 0,
+  widgets: [
+    { i: "widget1", x: 0, y: 0, w: 2, h: 2 },
+    { i: "widget2", x: 2, y: 2, w: 2, h: 2 },
+    { i: "widget3", x: 4, y: 4, w: 2, h: 2 },
+  ],
+  layout: null
+}];
+
 function App() {
 	const [toolsList, setToolsList] = useState([]);
-	const [currentTool, setCurrentTool] = useState(0);
-	const [value, setValue] = React.useState(0);
+	const [value, setValue] = useState(0);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
-
+  
 	const handleAdd = () => {
-		setToolsList([
-			...toolsList,
+    const newList = [
+      ...toolsList,
 			{
 				id: toolsList.length + 1,
 				widgets: [
@@ -58,15 +68,17 @@ function App() {
 					{ i: "widget2", x: 2, y: 2, w: 2, h: 2 },
 					{ i: "widget3", x: 4, y: 4, w: 2, h: 2 },
 				],
-			},
-		]);
+        layout: null
+			}
+		];
+		setToolsList(newList);
 	};
 
 
 	return (
 		<>
 			<div className='App'>
-				<Box
+				<Box className="panel-box"
 					sx={{
 						flexGrow: 1,
 						bgcolor: "background.paper",
@@ -79,13 +91,22 @@ function App() {
 						onChange={handleChange}
 						aria-label='Vertical tabs'
 						sx={{ borderRight: 1, borderColor: "divider" }}>
-						<Tab label='Item One' {...a11yProps(0)} />
+						
+            {toolsList.map((item, i) => {
+              return (
+                <Tab key={i} label={'Item No.' + i} {...a11yProps(i)} />
+              )
+            })}
 					</Tabs>
-					<TabPanel value={value} index={0}>
-						Item One
-					</TabPanel>
+          {toolsList.map((item, i) => {
+            return (
+              <TabPanel className="tab-panel" key={i} value={value} index={i}>
+                <CatalogItemLayout key={i} toolsList={toolsList} idx={i} setToolsList={setToolsList} />
+              </TabPanel>
+            )
+          })}
 				</Box>
-        <button onClick={(e) => handleAdd()}>Add Item</button>
+        <button className="add-item" onClick={(e) => handleAdd()}>Add Item</button>
 			</div>
 		</>
 	);
