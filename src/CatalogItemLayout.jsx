@@ -24,8 +24,8 @@ const CatalogItemLayout = ({toolsList, idx, setToolsList}) => {
     let newToolsList = toolsList;
     newToolsList[idx].widgets = tempArray;
     newToolsList[idx].layout = layout;
-    setToolsList(newToolsList);
-    setWidgetArray(tempArray);
+    setToolsList([...newToolsList]);
+    setWidgetArray([...tempArray]);
   };
 
   const handleAdd = () => {
@@ -36,8 +36,8 @@ const CatalogItemLayout = ({toolsList, idx, setToolsList}) => {
     let newToolsList = toolsList;
     newToolsList[idx].widgets = tempArray;
     console.log(newToolsList[idx]);
-    setToolsList(newToolsList);
-    setWidgetArray(tempArray);
+    setToolsList([...newToolsList]);
+    setWidgetArray([...tempArray]);
   };
 
   const handleDelete = (key) => {
@@ -46,8 +46,8 @@ const CatalogItemLayout = ({toolsList, idx, setToolsList}) => {
     tempArray.splice(index, 1);
     let newToolsList = toolsList;
     newToolsList[idx].widgets = tempArray;
-    setToolsList(newToolsList);
-    setWidgetArray(tempArray);
+    setToolsList([...newToolsList]);
+    setWidgetArray([...tempArray]);
   };
 
   return (
