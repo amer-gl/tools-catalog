@@ -18,8 +18,8 @@ const CatalogItemLayout = ({toolsList, idx, setToolsList}) => {
     layouts?.forEach((position) => {
       tempArray[Number(position.i)].x = position.x;
       tempArray[Number(position.i)].y = position.y;
-      tempArray[Number(position.i)].width =  position.w;
-      tempArray[Number(position.i)].height = position.h;
+      tempArray[Number(position.i)].w =  position.w;
+      tempArray[Number(position.i)].h = position.h;
     });
     let newToolsList = toolsList;
     newToolsList[idx].widgets = tempArray;
