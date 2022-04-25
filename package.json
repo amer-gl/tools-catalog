@@ -1,11 +1,11 @@
 {
-  "name": "sharepoint-crud",
-  "version": "1.4.0",
+  "name": "tools-catalog-webpart",
+  "version": "1.0.0",
   "private": true,
   "main": "lib/index.js",
   "author": {
-    "name": "Waldek Mastykarz",
-    "url": "https://rencore.com"
+    "name": "Amer Ghazal",
+    "url": "https://amerghazal.me"
   },
   "scripts": {
     "build": "gulp bundle",
