@@ -1,4 +1,8 @@
 export interface IListItem {
-    Title?: string;
     Id: number;
+    Title?: string;
+    ModelUsage?: string[];
+    Warranty?: string;
+    Layout?: object;
+    Widgets?: object[];
   }

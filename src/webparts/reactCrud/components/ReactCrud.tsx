@@ -37,7 +37,8 @@ export default class ReactCrud extends React.Component<
       (item: IListItem, i: number): JSX.Element => {
         return (
           <li>
-            {item.Title} ({item.Id}){" "}
+            {"Title: " + item.Title} 
+            {"Warranty: " + item.Warranty}
           </li>
         );
       }
@@ -48,82 +49,56 @@ export default class ReactCrud extends React.Component<
       : "";
 
     return (
-      <div className={styles.reactCrud}>
-        <div className={styles.container}>
-          <div
-            className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
-          >
-            <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
-              <span className="ms-font-xl ms-fontColor-white">
-                Tools Catalog CRUD operations
-              </span>
+      <>
+        <div className={styles.reactCrud}>
+          <div className={styles.container}>
+            <div
+              className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
+            >
+              <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
+                <span className="ms-font-xl ms-fontColor-white">
+                  Tools Catalog CRUD operations
+                </span>
+              </div>
             </div>
-          </div>
-          <div
-            className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
-          >
-            <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
-              <a
-                href="#"
-                className={`${styles.button} ${disabled}`}
-                onClick={() => this.createItem()}
-              >
-                <span className={styles.label}>Create item</span>
-              </a>
-              &nbsp;
-              <a
-                href="#"
-                className={`${styles.button} ${disabled}`}
-                onClick={() => this.readItem()}
-              >
-                <span className={styles.label}>Read item</span>
-              </a>
+            <div
+              className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
+            >
+              <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
+                <a
+                  href="#"
+                  className={`${styles.button} ${disabled}`}
+                  onClick={() => this.readItem()}
+                >
+                  <span className={styles.label}>Read item</span>
+                </a>
+              </div>
             </div>
-          </div>
-          <div
-            className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
-          >
-            <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
-              <a
-                href="#"
-                className={`${styles.button} ${disabled}`}
-                onClick={() => this.readItems()}
-              >
-                <span className={styles.label}>Read all items</span>
-              </a>
+            <div
+              className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
+            >
+              <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
+                <a
+                  href="#"
+                  className={`${styles.button} ${disabled}`}
+                  onClick={() => this.readItems()}
+                >
+                  <span className={styles.label}>Read all items</span>
+                </a>
+              </div>
             </div>
-          </div>
-          <div
-            className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
-          >
-            <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
-              <a
-                href="#"
-                className={`${styles.button} ${disabled}`}
-                onClick={() => this.updateItem()}
-              >
-                <span className={styles.label}>Update item</span>
-              </a>
-              &nbsp;
-              <a
-                href="#"
-                className={`${styles.button} ${disabled}`}
-                onClick={() => this.deleteItem()}
-              >
-                <span className={styles.label}>Delete item</span>
-              </a>
-            </div>
-          </div>
-          <div
-            className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
-          >
-            <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
-              {this.state.status}
-              <ul>{items}</ul>
+            <div
+              className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}
+            >
+              <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
+                {this.state.status}
+                <ul>{items}</ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        {/* <CatalogItemLayout> */}
+      </>
     );
   }
 
@@ -189,7 +164,7 @@ export default class ReactCrud extends React.Component<
           items: [],
         });
         return this.props.spHttpClient.get(
-          `${this.props.siteUrl}/_api/web/lists/getbytitle('${this.props.listName}')/items(${itemId})?$select=Title,Id`,
+          `${this.props.siteUrl}/_api/web/lists/getbytitle('${this.props.listName}')/items(${itemId})?$select=*`,
           SPHttpClient.configurations.v1,
           {
             headers: {
@@ -206,7 +181,7 @@ export default class ReactCrud extends React.Component<
         (item: IListItem): void => {
           this.setState({
             status: `Item ID: ${item.Id}, Title: ${item.Title}`,
-            items: [],
+            items: [item],
           });
         },
         (error: any): void => {
@@ -225,7 +200,7 @@ export default class ReactCrud extends React.Component<
     });
     this.props.spHttpClient
       .get(
-        `${this.props.siteUrl}/_api/web/lists/getbytitle('${this.props.listName}')/items?$select=Title,Id`,
+        `${this.props.siteUrl}/_api/web/lists/getbytitle('${this.props.listName}')/items?$select=*`,
         SPHttpClient.configurations.v1,
         {
           headers: {
