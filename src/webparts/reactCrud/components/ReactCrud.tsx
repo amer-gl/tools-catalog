@@ -37,10 +37,7 @@ export default class ReactCrud extends React.Component<
     const items: JSX.Element[] = this.state.items.map(
       (item: IListItem, i: number): JSX.Element => {
         return (
-          <li>
-            {"Title: " + item.Title} 
-            {"Warranty: " + item.Warranty}
-          </li>
+          <CatalogItemLayout idx={i} _layouts={item.Layouts || {}} _widgets={item.Widgets || []} updateItem={this.updateItem} />
         );
       }
     );
@@ -98,7 +95,7 @@ export default class ReactCrud extends React.Component<
             </div>
           </div>
         </div>
-        <CatalogItemLayout />
+        
       </>
     );
   }
@@ -269,7 +266,7 @@ export default class ReactCrud extends React.Component<
     );
   }
 
-  private updateItem(): void {
+  private updateItem(newData?: object): void {
     this.setState({
       status: "Loading latest items...",
       items: [],
@@ -316,7 +313,7 @@ export default class ReactCrud extends React.Component<
           __metadata: {
             type: listItemEntityTypeName,
           },
-          Title: `Item ${new Date()}`,
+          ...newData
         });
         return this.props.spHttpClient.post(
           `${this.props.siteUrl}/_api/web/lists/getbytitle('${this.props.listName}')/items(${item.Id})`,

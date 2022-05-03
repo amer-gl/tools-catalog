@@ -3,6 +3,6 @@ export interface IListItem {
     Title?: string;
     ModelUsage?: string[];
     Warranty?: string;
-    Layout?: object;
+    Layouts?: object;
     Widgets?: object[];
   }

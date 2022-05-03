@@ -5,11 +5,15 @@ import "react-resizable/css/styles.css";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-const CatalogItemLayout = ({ toolsList, idx, setToolsList }) => {
-  const [layouts, setLayouts] = React.useState(toolsList[idx].layout);
-  const [widgetArray, setWidgetArray] = React.useState([...toolsList[idx].widgets]);
+const CatalogItemLayout = ({ idx, _layouts, _widgets, updateItem }) => {
+  const [layouts, setLayouts] = React.useState({..._layouts});
+  const [widgetArray, setWidgetArray] = React.useState([..._widgets]);
 
-  const handleModify = (layouts, layout) => {
+  React.useEffect(() : void => {
+
+  }, []);
+
+  const handleModify = (layouts: any[], layout: any) => {
     const tempArray = widgetArray;
     setLayouts(layout);
     layouts?.forEach((position) => {
@@ -18,11 +22,8 @@ const CatalogItemLayout = ({ toolsList, idx, setToolsList }) => {
       tempArray[Number(position.i)].w = position.w;
       tempArray[Number(position.i)].h = position.h;
     });
-    let newToolsList = toolsList;
-    newToolsList[idx].widgets = tempArray;
-    newToolsList[idx].layout = layout;
-    setToolsList([...newToolsList]);
     setWidgetArray([...tempArray]);
+    updateItem({Layouts: layouts, Widgets: widgetArray});
   };
 
   const handleAdd = () => {
@@ -30,21 +31,18 @@ const CatalogItemLayout = ({ toolsList, idx, setToolsList }) => {
       ...widgetArray,
       { i: "widget" + (widgetArray.length + 1), x: 0, y: 0, w: 2, h: 2 },
     ];
-    let newToolsList = toolsList;
-    newToolsList[idx].widgets = tempArray;
-    console.log(newToolsList[idx]);
-    setToolsList([...newToolsList]);
     setWidgetArray([...tempArray]);
+    
+    updateItem({Layouts: layouts, Widgets: widgetArray});
   };
 
   const handleDelete = (key) => {
     const tempArray = widgetArray.slice();
     const index = tempArray.indexOf(tempArray.find((data) => data.i === key));
     tempArray.splice(index, 1);
-    let newToolsList = toolsList;
-    newToolsList[idx].widgets = tempArray;
-    setToolsList([...newToolsList]);
     setWidgetArray([...tempArray]);
+    
+    updateItem({Layouts: layouts, Widgets: widgetArray});
   };
 
   return (
@@ -54,7 +52,7 @@ const CatalogItemLayout = ({ toolsList, idx, setToolsList }) => {
       <ResponsiveReactGridLayout
         onLayoutChange={handleModify}
         verticalCompact={true}
-        layout={layouts}
+        layouts={layouts}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         preventCollision={false}
         cols={{ lg: 8, md: 8, sm: 4, xs: 2, xxs: 2 }}
@@ -78,9 +76,9 @@ const CatalogItemLayout = ({ toolsList, idx, setToolsList }) => {
                 w: widget?.w,
                 h: widget?.h,
                 i: widget.i,
-                minW: 2,
+                minW: 1,
                 maxW: Infinity,
-                minH: 2,
+                minH: 1,
                 maxH: Infinity,
                 isDraggable: true,
                 isResizable: true,
