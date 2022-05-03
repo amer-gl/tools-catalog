@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -6,8 +6,8 @@ import "react-resizable/css/styles.css";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const CatalogItemLayout = ({ toolsList, idx, setToolsList }) => {
-  const [layouts, setLayouts] = useState(toolsList[idx].layout);
-  const [widgetArray, setWidgetArray] = useState([...toolsList[idx].widgets]);
+  const [layouts, setLayouts] = React.useState(toolsList[idx].layout);
+  const [widgetArray, setWidgetArray] = React.useState([...toolsList[idx].widgets]);
 
   const handleModify = (layouts, layout) => {
     const tempArray = widgetArray;

@@ -31,5 +31,5 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx"
-, "src/webparts/reactCrud/components/CatalogItemLayout.jsx"  ]
+, "src/webparts/reactCrud/components/CatalogItemLayout.tsx"  ]
 }

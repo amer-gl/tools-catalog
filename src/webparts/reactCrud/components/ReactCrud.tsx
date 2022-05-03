@@ -4,6 +4,7 @@ import { IReactCrudProps } from "./IReactCrudProps";
 import { IReactCrudState } from "./IReactCrudState";
 import { IListItem } from "./IListItem";
 import { SPHttpClient, SPHttpClientResponse } from "@microsoft/sp-http";
+import CatalogItemLayout from "./CatalogItemLayout";
 
 export default class ReactCrud extends React.Component<
   IReactCrudProps,
@@ -97,7 +98,7 @@ export default class ReactCrud extends React.Component<
             </div>
           </div>
         </div>
-        {/* <CatalogItemLayout> */}
+        <CatalogItemLayout />
       </>
     );
   }
