@@ -1,11 +1,15 @@
 {
   "@microsoft/generator-sharepoint": {
-    "isCreatingSolution": false,
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "tools-catalog",
+    "libraryId": "2cd8c680-3acb-4cb9-a75a-2fe334431124",
     "environment": "spo",
-    "version": "1.12.1",
-    "libraryName": "sharepoint-crud",
-    "libraryId": "1409e8a2-1ce4-4888-87f8-1dc377b6b62e",
     "packageManager": "npm",
+    "solutionName": "tools-catalog",
+    "solutionShortDescription": "tools-catalog description",
+    "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "componentType": "webpart"
   }

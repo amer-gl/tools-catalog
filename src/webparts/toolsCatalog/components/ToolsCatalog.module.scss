@@ -1,0 +1,60 @@
+@import '~office-ui-fabric-react/dist/sass/References.scss';
+
+.toolsCatalog {
+  overflow: hidden;
+  padding: 1em;
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+  &.teams {
+    font-family: $ms-font-family-fallbacks;
+  }
+  .react-grid-layout {
+    position: relative;
+    transition: height 200ms ease;
+  }
+  
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcomeImage {
+  width: 100%;
+  max-width: 420px;
+}
+
+.links {
+  a {
+    text-decoration: none;
+    color: "[theme:link, default:#03787c]";
+    color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
+
+    &:hover {
+      text-decoration: underline;
+      color: "[theme:linkHovered, default: #014446]";
+      color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
+    }
+  }
+}
+
+
+.reactGridItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+  transition-property: left, top;
+  background: rgba(0, 132, 255, 0.473);
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.deleteButton {
+  position: absolute;
+  top: 0%;
+  left: 92%;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}

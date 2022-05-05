@@ -1,9 +1,9 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "sharepoint-crud-client-side-solution",
-    "id": "1409e8a2-1ce4-4888-87f8-1dc377b6b62e",
-    "version": "1.4.0.0",
+    "name": "tools-catalog-client-side-solution",
+    "id": "2cd8c680-3acb-4cb9-a75a-2fe334431124",
+    "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -12,10 +12,29 @@
       "websiteUrl": "",
       "privacyUrl": "",
       "termsOfUseUrl": "",
-      "mpnId": ""
-    }
+      "mpnId": "Undefined-1.14.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "tools-catalog description"
+      },
+      "longDescription": {
+        "default": "tools-catalog description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "tools-catalog Feature",
+        "description": "The feature that activates elements of the tools-catalog solution.",
+        "id": "d6b6fa5a-41b0-451f-b71d-c8ffcd44adff",
+        "version": "1.0.0.0"
+      }
+    ]
   },
   "paths": {
-    "zippedPackage": "solution/sharepoint-crud.sppkg"
+    "zippedPackage": "solution/tools-catalog.sppkg"
   }
 }

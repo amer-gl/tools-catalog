@@ -1,14 +1,16 @@
-# Folders
-.vscode
-coverage
-node_modules
-sharepoint
+!dist
+config
+
+gulpfile.js
+
+release
 src
 temp
 
-# Files
-*.csproj
-.git*
-.yo-rc.json
-gulpfile.js
 tsconfig.json
+tslint.json
+
+*.log
+
+.yo-rc.json
+.vscode
